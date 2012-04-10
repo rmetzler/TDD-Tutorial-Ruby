@@ -6,20 +6,22 @@
   ol:hover { background:#e8e8e8;}
   ol li:hover { background:#eee;}
   li {height:60px;}
+  .selected { background:#abc;}
+  .selected:hover { background:#cdf;}
 </style>
 
 <body>
 
   <div id="hanoi">
-      <ol id="turm-a" reversed="true">
+      <ol id="turm-a" class="">
         <!-- 4 Scheiben statt 5 -->
         <li class=""></li>
-        <li class="scheibe3">Scheibe 3</li>
+        <li class="scheibe3 selected">Scheibe 3</li>
         <li class="scheibe2">Scheibe 2</li>
         <li class="scheibe1">Scheibe 1</li>
         <li class="scheibe0">Scheibe 0</li>
       </ol>
-      <ol id="turm-b">
+      <ol id="turm-b" class="">
         <!-- nur eine Scheibe -->
         <li class=""></li>
         <li class=""></li>
@@ -27,7 +29,7 @@
         <li class=""></li>
         <li class="scheibe4">Scheibe 4</li>
       </ol>
-      <ol id="turm-c">
+      <ol id="turm-c" class="">
         <!-- leere liste -->
         <li class=""></li>
         <li class=""></li>
