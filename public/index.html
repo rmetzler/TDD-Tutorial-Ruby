@@ -2,10 +2,10 @@
 <html><head><title>Turm von Hanoi</title></head>
 
 <style type="text/css" media="screen">
-  ol { width:200px; float:left; list-style:none; padding:0;}
-  ol:hover { background:#e8e8e8;}
-  ol li:hover { background:#eee;}
-  li {height:60px;}
+  ol {  background:#e8e8e8; width:200px; float:left; list-style:none; padding:0;}
+  li { height:60px;}
+  li:hover { background:#eee;}
+  li.empty:hover { background:#e8e8e8;}
   .selected { background:#abc;}
   .selected:hover { background:#cdf;}
 </style>
@@ -13,29 +13,29 @@
 <body>
 
   <div id="hanoi">
-      <ol id="turm-a" class="">
+      <ol id="turm-a">
         <!-- 4 Scheiben statt 5 -->
-        <li class=""></li>
-        <li class="scheibe3 selected">Scheibe 3</li>
-        <li class="scheibe2">Scheibe 2</li>
-        <li class="scheibe1">Scheibe 1</li>
-        <li class="scheibe0">Scheibe 0</li>
+        <li class="empty"></li>
+        <li id="scheibe3" class="selected">Scheibe 3</li>
+        <li id="scheibe2">Scheibe 2</li>
+        <li id="scheibe1">Scheibe 1</li>
+        <li id="scheibe0">Scheibe 0</li>
       </ol>
       <ol id="turm-b" class="">
         <!-- nur eine Scheibe -->
-        <li class=""></li>
-        <li class=""></li>
-        <li class=""></li>
-        <li class=""></li>
-        <li class="scheibe4">Scheibe 4</li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li id="scheibe4">Scheibe 4</li>
       </ol>
       <ol id="turm-c" class="">
         <!-- leere liste -->
-        <li class=""></li>
-        <li class=""></li>
-        <li class=""></li>
-        <li class=""></li>
-        <li class=""></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
+        <li class="empty"></li>
       </ol>
   </div>
 

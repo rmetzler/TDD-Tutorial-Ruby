@@ -103,6 +103,10 @@ class Hanoi
     @win_block.call unless @win_block == nil
   end
   
+  def to_s
+    @stacks.map(&:to_s).join("\n")
+  end
+  
 end
 
 
@@ -141,7 +145,7 @@ describe Hanoi do
     has_won = "not yet"
     @hanoi = Hanoi.new 2 do
       @hanoi.should be_won
-      has_won = "I win"
+      has_won = "YOU WIN"
     end
     
     @hanoi.should_not be_won
@@ -151,16 +155,10 @@ describe Hanoi do
     @hanoi.should_not be_won
     @hanoi.move(:b, :c)
     
-    has_won.should == "I win"
+    has_won.should == "YOU WIN"
   end
   
 end
 
-def printHanoi( hanoi )
-  [:a, :b, :c].each do |s|
-    puts hanoi.stack(s)
-  end
-end
-
-printHanoi Hanoi.new
+puts Hanoi.new
 
