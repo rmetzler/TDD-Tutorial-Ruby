@@ -28,6 +28,14 @@ describe RedisHanoi do
     lambda { @hanoi.move(:b, :c) }.should raise_error
   end
   
+  it "should not allow moves with unknown discs" do
+    @hanoi.should_not be_allowed_move(nil, nil)
+    @hanoi.should_not be_allowed_move(nil, :c)
+    @hanoi.should_not be_allowed_move(:a, nil)
+    @hanoi.should_not be_allowed_move(:a, :x)
+    @hanoi.should_not be_allowed_move(:x, :a)
+  end
+  
   it "should be allowed to put a smaller disc on a bigger disc" do
     @hanoi.should be_allowed_move(:a, :b)
     @hanoi.move(:a, :b)

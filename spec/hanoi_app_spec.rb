@@ -71,4 +71,26 @@ describe "Hanoi Webservice Test" do
     
   end
   
+  it "should return a 404 when move is not allowed" do
+    post '/hanoi/'
+    follow_redirect!
+    
+    move_url = "#{last_request.url}/move"
+
+    post move_url, {:from => "b", :to => "c", }
+    last_response.status.should eq 404    
+
+    post move_url, {:from => "a", }
+    last_response.status.should eq 404
+
+    post move_url, {:from => "b", }
+    last_response.status.should eq 404
+
+    post move_url, {:to => "c", }
+    last_response.status.should eq 404
+
+    post move_url
+    last_response.status.should eq 404
+  end
+    
 end

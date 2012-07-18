@@ -24,9 +24,11 @@ end
 post '/hanoi/:game_id/move' do
   hanoi = RedisHanoi.new(params[:game_id])
 
-  if params[:from] && params[:to]
-    hanoi.move(params[:from], params[:to])
-  end
+  from = params[:from]
+  to   = params[:to]
+
+  not_found unless hanoi.allowed_move? from, to
+  hanoi.move from, to
 
   redirect "/hanoi/#{hanoi.game_id}"
 end

@@ -47,6 +47,9 @@ class RedisHanoi
 
   # ist der zug erlaubt?
   def allowed_move?(from, to)
+    return false unless ['a', 'b', 'c'].member? from.to_s
+    return false unless ['a', 'b', 'c'].member? to.to_s
+
     return false if is_empty?(from)
     return true  if is_empty?(to)
     last(to) < last(from)
