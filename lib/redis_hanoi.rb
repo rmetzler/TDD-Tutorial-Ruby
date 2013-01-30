@@ -24,8 +24,8 @@ class RedisHanoi
   end
   
   # gibt den schlüssel "hanoi:<game_id>:<rod>" zurück
-  def key(rod)
-    "hanoi:#{@game_id}:#{rod}"
+  def key(sym)
+    "hanoi:#{@game_id}:#{sym}"
   end
   
   # gibt die Liste für einen Stab zurück
@@ -41,18 +41,16 @@ class RedisHanoi
   end
   
   # gibt das letzte Element / die oberste Scheibe zurück
-  def last(rod)
+  def top(rod)
     $redis.lindex(key(rod), 0)
   end
 
   # ist der zug erlaubt?
   def allowed_move?(from, to)
-    return false unless ['a', 'b', 'c'].member? from.to_s
-    return false unless ['a', 'b', 'c'].member? to.to_s
-
+    return false unless rod?(from) && rod?(to)
     return false if is_empty?(from)
     return true  if is_empty?(to)
-    last(to) < last(from)
+    top(to) < top(from)
   end
   
   # mache einen zug von Stab from nach Stab to
@@ -66,5 +64,10 @@ class RedisHanoi
   def finished?
     is_empty?(:a) && is_empty?(:b) && ! is_empty?(:c)
   end  
+
+  # ist dies ein gültiger Stab?
+  def rod?(rod)
+    ['a', 'b', 'c'].member? rod.to_s
+  end
   
 end
