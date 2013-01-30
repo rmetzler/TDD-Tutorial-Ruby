@@ -2,8 +2,14 @@ require 'sinatra'
 require 'json'
 require File.join(File.dirname(__FILE__), 'redis_hanoi') 
 
+helpers do
+  def forbidden
+    halt 403
+  end
+end
+
 get '/' do
-  "Hello World!"
+  "Hello Hanoi!"
 end
 
 post '/hanoi/' do
@@ -27,7 +33,7 @@ post '/hanoi/:game_id/move' do
   from = params[:from]
   to   = params[:to]
 
-  not_found unless hanoi.allowed_move? from, to
+  forbidden unless hanoi.allowed_move?(from, to)
   hanoi.move from, to
 
   redirect "/hanoi/#{hanoi.game_id}"
